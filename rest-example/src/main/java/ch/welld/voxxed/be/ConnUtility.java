@@ -65,6 +65,7 @@ public class ConnUtility {
 	public static void releaseBEConnector(BEConnector connector) {
 		if (connector != null) {
 			try {
+				LOG.debug("releasing connector");
 				connector.release();
 			} catch (NamingException e) {
 				LOG.error("error in releasing connector: " + e);
