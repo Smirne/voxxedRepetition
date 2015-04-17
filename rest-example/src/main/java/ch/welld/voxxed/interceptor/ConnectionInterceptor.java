@@ -17,31 +17,27 @@ import ch.welld.voxxed.be.VoxxedFacade;
 
 
 @Interceptor
-@BeConnection  //binding the interceptor here. now any method annotated with @Logit would be intercepted by logMethodEntry
+@BeConnection
 public class ConnectionInterceptor {
 	
-	private static final Logger logger = LogUtility.getLogger(ExampleDAO.class);
-    @AroundInvoke
-    public Object injectFacade(InvocationContext ctx) throws Exception {
-    	
-    	BEConnector connector = null;
-
-		try {
-
-			connector = ConnUtility.getBEConnector();
-			VoxxedFacade service = ConnUtility.getVoxxedFacade(connector);
-	        ctx.getParameters()[0] = service;
-	        Object b = ctx.proceed();
-	        return b;
-		} catch(OperatorNotFoundException oE){
-			logger.warn("Operator not found " , oE);
-			return null; 
-		}catch (Exception e) {
-			logger.warn("Error in be call", e);
-			return null;
-		} finally {
-			ConnUtility.releaseBEConnector(connector);
-		}
-       
-    }
+	private static final Logger logger = LogUtility.getLogger(ConnectionInterceptor.class);
+@AroundInvoke
+public Object injectFacade(InvocationContext ctx) throws Exception {
+	BEConnector connector = null;
+	try {
+		connector = ConnUtility.getBEConnector();
+		VoxxedFacade service = ConnUtility.getVoxxedFacade(connector);
+        ctx.getParameters()[0] = service;
+        Object b = ctx.proceed();
+        return b;
+	} catch(OperatorNotFoundException oE){
+		logger.warn("Operator not found " , oE);
+		return null; 
+	}catch (Exception e) {
+		logger.warn("Error in be call", e);
+		return null;
+	} finally {
+		ConnUtility.releaseBEConnector(connector);
+	}
+}
 }

@@ -150,31 +150,36 @@ public class ExampleDAO {
 	}
 	
 	
-	public Squid getSquidsWithTask(String token, final Map<String,Object> criteria) {
-				
-		return beTaskExecutor.executeBeCall(new BeTask<Squid>(token) {
+public Squid getSquidsWithTask(String token, final Map<String,Object> criteria) {
 			
-			@Override
-			public Squid call() throws Exception {
-				return this.getService().findSquidByCriteria(this.getOperator(),criteria);
-			}
-			
-		});
-	}
-	
-	@LogMethod
-	public Squid getSquidsWithTaskAndLog(String token, final Map<String,Object> criteria) {
+	Squid result= beTaskExecutor.executeBeCall(new BeTask<Squid>(token) {
 		
-		return beTaskExecutor.executeBeCall(new BeTask<Squid>(token) {
-			
-			@Override
-			public Squid call() throws Exception {
-				return this.getService().findSquidByCriteria(this.getOperator(),criteria);
-			}
+		@Override
+		public Squid call() throws Exception {
+			return this.getService().findSquidByCriteria(this.getOperator(),criteria);
+		}
+		
+	});
+	
+	// 6 audit the action (log)
+	logger.info("getSquidsWithTask executed with params " + criteria 
+					+ " and result " + result);
+	return result;
+}
+	
+@LogMethod
+public Squid getSquidsWithTaskAndLog(String token, final Map<String,Object> criteria) {
+	
+	return beTaskExecutor.executeBeCall(new BeTask<Squid>(token) {
+		
+		@Override
+		public Squid call() throws Exception {
+			return this.getService().findSquidByCriteria(this.getOperator(),criteria);
+		}
 
-			
-		});
-	}
+		
+	});
+}
 	
 public Squid getSquidsWithMethod(String token, final Map<String,Object> criteria) {
 	Method method = null;
