@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+	<Appenders>
+		<Console name="CONSOLE" target="SYSTEM_OUT">
+			<PatternLayout pattern="%-6r[%-5p] %-13.13t %20.20c{1} - %m%n"/>
+		</Console>
+		<File name="REST_LOG" fileName="rest.log">
+			<PatternLayout pattern="%d{ISO8601} [%-5p] %-13.13t %20.20c{1} - %m%n"/>
+		</File>
+	</Appenders>
+	<Loggers>
+		<Logger name="com.siemens.ecar" level="TRACE" additivity="false">
+			<AppenderRef ref="CONSOLE"/>
+		</Logger>
+		<Root level="TRACE">
+			<AppenderRef ref="CONSOLE"/>
+		</Root>
+	</Loggers>
+</Configuration>

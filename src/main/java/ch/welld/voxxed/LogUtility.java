@@ -4,11 +4,12 @@ import java.io.File;
 import java.util.Hashtable;
 import java.util.Map;
 
-import org.apache.log4j.Logger;
-import org.apache.log4j.PropertyConfigurator;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.core.config.Configurator;
 
 /**
- * Utility to retrieve and manage loggers. Uses log4j Logger class.
+ * Utility to retrieve and manage loggers. Uses Log4j 2 Logger class.
  * We could build an interface to allow different implementation.
  */
 public final class LogUtility {
@@ -32,7 +33,7 @@ public final class LogUtility {
 	}
 
 	/**
-	 * Optional: configure the logger with a specific Log4j.properties file.
+	 * Optional: configure the logger with a specific Log4j 2 configuration file (e.g. log4j2.xml).
 	 * The file should be external. This method should be called only once per
 	 * application lifetime. Further configuration attempts will be ignored.
 	 * If this method is never called, log4j will look for the configuration file
@@ -48,7 +49,7 @@ public final class LogUtility {
 				if (!configured) {
 					// Check if file exists and configure
 					if (new File(fileName).exists()) {
-						PropertyConfigurator.configure(fileName);
+						Configurator.initialize(null, fileName);
 						configured = true;
 						return true;
 					} else {
@@ -78,7 +79,7 @@ public final class LogUtility {
 	public static Logger getLogger(Class myClass) {
 		Logger logger = loggerTable.get(myClass);
 		if (logger == null) {
-			logger = Logger.getLogger(myClass);
+			logger = LogManager.getLogger(myClass);
 			loggerTable.put(myClass, logger);
 		}
 		return logger;
