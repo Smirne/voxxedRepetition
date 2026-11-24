@@ -24,7 +24,7 @@ import javax.ejb.LockType;
 import javax.ejb.Singleton;
 import javax.inject.Inject;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 
 import ch.welld.voxxed.be.BEConnector;
 import ch.welld.voxxed.be.ConnUtility;

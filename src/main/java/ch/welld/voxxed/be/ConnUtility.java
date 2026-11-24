@@ -3,8 +3,8 @@ package ch.welld.voxxed.be;
 
 import javax.naming.NamingException;
 
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * Utility for handling the connection to the BE.
@@ -14,7 +14,7 @@ import org.apache.log4j.Logger;
 public class ConnUtility {
 
 	/** Logger for this class. */
-	private static final Logger LOG = Logger.getLogger(ConnUtility.class);
+	private static final Logger LOG = LogManager.getLogger(ConnUtility.class);
 
 
 	/**

@@ -1,7 +1,8 @@
 package ch.welld.voxxed;
 
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import ch.welld.voxxed.be.BEConnector;
 import ch.welld.voxxed.be.ConnUtility;
@@ -13,7 +14,7 @@ public class BeTaskExecutor {
 	
 	private LoginManager loginManager = LoginManager.getInstance();
 	
-	private static final Logger logger = Logger.getLogger(BeTaskExecutor.class);
+	private static final Logger logger = LogManager.getLogger(BeTaskExecutor.class);
 	
 	public <T> T executeBeCall(BeTask<T> task){
 		BEConnector connector = null;

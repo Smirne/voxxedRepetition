@@ -5,7 +5,7 @@ import javax.interceptor.AroundInvoke;
 import javax.interceptor.Interceptor;
 import javax.interceptor.InvocationContext;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
 
 import ch.welld.voxxed.ExampleDAO;
 import ch.welld.voxxed.LogUtility;

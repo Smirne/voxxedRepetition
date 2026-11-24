@@ -2,7 +2,8 @@ package ch.welld.voxxed.be;
 
 import java.util.Map;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import ch.welld.voxxed.BeTaskExecutor;
 import ch.welld.voxxed.data.Octopus;
@@ -10,7 +11,7 @@ import ch.welld.voxxed.data.Squid;
 
 public class VoxxedFacadeImpl implements VoxxedFacade {
 	
-	private static final Logger logger = Logger.getLogger(VoxxedFacadeImpl.class);
+	private static final Logger logger = LogManager.getLogger(VoxxedFacadeImpl.class);
 
 
 	@Override
